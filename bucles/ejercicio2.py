@@ -9,6 +9,6 @@ for i in range(numero):
 numero = int(input("ingrese el numero entero positivo: "))
 acumulador = 0
 for i in range(numero + 1):
-   if i 
+   if i % 
     acumulador += i
 print(f"La suma de los primeros {numero} numeros enteros es: {acumulador}")
