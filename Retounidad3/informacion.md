@@ -59,4 +59,25 @@ o	El avión se queda sin altitud antes de cubrir la distancia → Impacto en ter
 
 
 
-# Ecuaciones
+# Ecuaciones requeridas
+**Ejercicio 2:**
+
+
+
+
+# Pseudocodigos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
