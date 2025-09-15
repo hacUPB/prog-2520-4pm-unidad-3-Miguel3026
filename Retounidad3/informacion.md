@@ -1,7 +1,7 @@
 # Simulaciones aeronauticas
 
 
-## Ejercicio 2: Consumo de combustible
+## Ejercicio 3: Consumo de combustible
 ## Enunciado
 Un Airbus A320 inicia un vuelo con una cantidad determinada de combustible. El vuelo se divide en tres fases: ascenso, crucero y descenso, cada una con un consumo de combustible distinto.
 
@@ -28,7 +28,7 @@ Durante el vuelo, el sistema debe calcular minuto a minuto (o en intervalos de 5
 
 # Tablas de variables
 
-## Ejercicio 2: Consumo de combustible
+## Ejercicio 3: Consumo de combustible
 
 #  Tabla de Variables
 
@@ -57,7 +57,7 @@ Durante el vuelo, el sistema debe calcular minuto a minuto (o en intervalos de 5
 
 # Pseudocodigos
 
-## Ejercicio 2
+## Ejercicio 3
 ```
 INICIO
 
