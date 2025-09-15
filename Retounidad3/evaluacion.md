@@ -7,7 +7,7 @@
 | Contexto aeronáutico claro y relevante                                    |                                               |  En archivo informacion.md desde el titulo "simulaciones aeronauticas".                                      |
 | Clara definición y clasificación de las variables de entrada, salida, de control e intermedias |                                               | En archivo informacion.md seccion "Tablas de variables".                                        |
 | Clara definición de las constantes que se utilizan en el problema         |                                               |  En archivo informacion.md seccion "Tablas de variables".                                       |
-| Ecuación que relaciona adecuadamente las variables del problema           |                                               |                                         |
+| Ecuación que relaciona adecuadamente las variables del problema           |                                               |      En archivo informacion.md seccion "pseudocodigos"                                   |
 | No es solo cálculo directo                                                |                                               |                                         |
 | Al menos un bucle (variable de control, condición de parada)              |                                               |                                         |
 | Al menos una sentencia condicional significativa                          |                                               |                                         |

@@ -1,52 +1,55 @@
-def simulacion_planeo():
-    # Entradas del usuario
-    altitud = float(input("Altitud inicial (m): "))
-    v = float(input("Velocidad inicial (m/s): "))
-    LD = float(input("Relación L/D: "))
-    distancia_pista = float(input("Distancia a la pista (m): "))
+# Simulación de consumo de combustible de un Airbus A320 en vuelo
 
-    # Inicialización
-    minuto = 0
-    altitud_restante = altitud
-    distancia_restante = distancia_pista
+# Constantes
+AVION = "Airbus A320"
+COMBUSTIBLE_SEGURIDAD = 1500         # litros
+CONSUMO_ASCENSO = 75                  # litros/min
+CONSUMO_CRUCERO = 50                  # litros/min
+CONSUMO_DESCENSO = 37.5               # litros/min
+INTERVALO = 5                         # minutos
 
-    print("\n--- Simulación de Planeo de Emergencia ---\n")
+# Entradas del usuario
+combustible_inicial = float(input("Ingrese el combustible inicial (LITROS): "))
+tiempo_ascenso = int(input("Ingrese la duración del ascenso (minutos): "))
+tiempo_crucero = int(input("Ingrese la duración del crucero (minutos): "))
+tiempo_descenso = int(input("Ingrese la duración del descenso (minutos): "))
 
-    # Bucle principal
-    while altitud_restante > 0 and distancia_restante > 0:
-        minuto += 1
-        # Avance horizontal en 1 minuto
-        avance = v * 60  # (m)
-        # Pérdida de altitud
-        perdida_altitud = avance / LD
+combustible_actual = combustible_inicial
+mensaje_final = ""
 
-        # Actualizar estado
-        distancia_restante -= avance
-        altitud_restante -= perdida_altitud
-
-        print(f"Minuto {minuto}:")
-        print(f"  Altitud restante: {altitud_restante:.1f} m")
-        print(f"  Distancia a la pista: {distancia_restante:.1f} m\n")
-
-        # Si ya llegó
-        if distancia_restante <= 0 and altitud_restante >= 0:
-            print("✅ Aterrizaje exitoso en la pista.")
-            return
-        if altitud_restante <= 0 and distancia_restante > 0:
-            print("💥 Impacto en el terreno antes de llegar a la pista.")
-            return
-
-        # Decisión del usuario
-        decision = input("¿Mantener (m) o aumentar (a) velocidad? ").lower()
-        if decision == "a":
-            v *= 1.2       # Aumentar velocidad un 20%
-            LD *= 0.8      # Penalización: baja eficiencia
-
-    # Salida final si se rompe el bucle
-    if distancia_restante <= 0 and altitud_restante >= 0:
-        print("✅ Aterrizaje exitoso en la pista.")
+# Secuencia de fases
+for fase in ["ascenso", "crucero", "descenso"]:
+    if fase == "ascenso":
+        consumo = CONSUMO_ASCENSO
+        duracion = tiempo_ascenso
+    elif fase == "crucero":
+        consumo = CONSUMO_CRUCERO
+        duracion = tiempo_crucero
     else:
-        print("💥 Impacto en el terreno antes de llegar a la pista.")
+        consumo = CONSUMO_DESCENSO
+        duracion = tiempo_descenso
 
-# Ejecutar simulación
-simulacion_planeo()
+    minuto = 0
+    while minuto < duracion and combustible_actual > 0:
+        print(f"Fase: {fase} | Minuto: {minuto} | Combustible: {combustible_actual:.2f} LITROS")
+
+        # REDUCCIÓN de combustible
+        combustible_actual -= (consumo * INTERVALO)
+
+        # Verificar la emergencia
+        if combustible_actual <= COMBUSTIBLE_SEGURIDAD:
+            print("ALERTA: Combustible crítico. Buscar aeropuerto alterno.")
+            mensaje_final = "Emergencia por bajo nivel de combustible"
+            break
+
+        minuto += INTERVALO
+    
+    if combustible_actual <= 0:
+        mensaje_final = "El avión se quedó sin combustible en pleno vuelo."
+        break
+
+# Verificar si el vuelo terminó con éxito
+if combustible_actual > COMBUSTIBLE_SEGURIDAD and mensaje_final == "":
+    mensaje_final = "El avión completó el vuelo con éxito."
+
+print("\nResultado final:", mensaje_final)
