@@ -17,11 +17,11 @@ El usuario debe ingresar:
 
 - La duración de cada fase en minutos.
 
-Durante el vuelo, el sistema debe calcular minuto a minuto (o en intervalos de 5 minutos) el combustible restante y verificar:
+Durante el vuelo, el sistema debe calcular cada 5 minutos el combustible restante y verificar:
 
-- Si el combustible baja del nivel mínimo de seguridad 1500 litros, la aeronave debe declarar una emergencia y buscar un aeropuerto alterno.
+- Si el combustible baja del nivel mínimo de seguridad 1500 litros, la aeronave debe declarar una emergencia y buscar un aeropuerto cercano.
 
-- Si el combustible llega a cero, el avión se queda sin combustible en pleno vuelo.
+- Si el combustible llega a cero, el avión se queda sin combustible en vuelo.
 
 - Si se completan todas las fases y queda combustible suficiente, el vuelo termina con éxito.
 
