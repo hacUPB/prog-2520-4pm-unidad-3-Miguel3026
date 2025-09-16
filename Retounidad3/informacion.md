@@ -253,8 +253,82 @@ Donde:
    - Si combustible_act > 1500 → "Normal"  
  
 
+# Pseudocodigos
+## Ejercicio 3
 
+```
+INICIO
 
+    Definir consumo_ascenso = 75      litros/minuto
+    Definir consumo_crucero = 50      litros/minuto
+    Definir consumo_descenso = 37.5   litros/minuto
+    Definir intervalo = 5             minutos
+    Definir min_seguridad = 1500      reserva segura
+
+    Leer combustible_inicial
+    Leer t_ascenso
+    Leer t_crucero
+    Leer t_descenso
+
+    combustible_actual ← combustible_inicial
+    tiempo_total ← 0
+
+    FASE ASCENSO
+    Para minuto desde 0 hasta t_ascenso con paso intervalo
+        combustible_actual ← combustible_actual - (consumo_ascenso * intervalo)
+        tiempo_total ← tiempo_total + intervalo
+
+        Si combustible_actual ≤ 0 entonces
+            Mostrar "Sin combustible durante ascenso. Vuelo fallido."
+            Terminar
+        Si no, si combustible_actual ≤ min_seguridad entonces
+            Mostrar "Emergencia: combustible bajo en ascenso."
+        Si no
+            Mostrar "Normal: combustible suficiente en ascenso."
+        Fin Si
+    Fin Para
+
+    FASE CRUCERO
+    Para minuto desde 0 hasta t_crucero con paso intervalo
+        combustible_actual ← combustible_actual - (consumo_crucero * intervalo)
+        tiempo_total ← tiempo_total + intervalo
+
+        Si combustible_actual ≤ 0 entonces
+            Mostrar "Sin combustible durante crucero. Vuelo fallido."
+            Terminar
+        Si no, si combustible_actual ≤ min_seguridad entonces
+            Mostrar "Emergencia: combustible bajo en crucero."
+        Si no
+            Mostrar "Normal: combustible suficiente en crucero."
+        Fin Si
+    Fin Para
+
+    FASE DESCENSO
+    Para minuto desde 0 hasta t_descenso con paso intervalo
+        combustible_actual ← combustible_actual - (consumo_descenso * intervalo)
+        tiempo_total ← tiempo_total + intervalo
+
+        Si combustible_actual ≤ 0 entonces
+            Mostrar "Sin combustible durante descenso. Vuelo fallido."
+            Terminar
+        Si no, si combustible_actual ≤ min_seguridad entonces
+            Mostrar "Emergencia: combustible bajo en descenso."
+        Si no
+            Mostrar "Normal: combustible suficiente en descenso."
+        Fin Si
+    Fin Para
+
+    RESULTADO FINAL
+    Si combustible_actual ≥ min_seguridad entonces
+        Mostrar "Vuelo exitoso. Aterrizaje con reserva suficiente."
+    Si no, si combustible_actual > 0 entonces
+        Mostrar "Vuelo completado en emergencia. Aterrizaje con menos de la reserva mínima."
+    Si no
+        Mostrar "Vuelo fallido. Sin combustible antes de aterrizar."
+    Fin Si
+
+FIN
+```
 
 
 
