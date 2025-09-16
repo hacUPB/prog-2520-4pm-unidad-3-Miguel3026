@@ -7,11 +7,11 @@
 | Contexto aeronáutico claro y relevante                                    |                                               |  En archivo informacion.md desde el titulo "simulaciones aeronauticas".                                      |
 | Clara definición y clasificación de las variables de entrada, salida, de control e intermedias |                                               | En archivo informacion.md seccion "Tablas de variables".                                        |
 | Clara definición de las constantes que se utilizan en el problema         |                                               |  En archivo informacion.md seccion "Tablas de variables".                                       |
-| Ecuación que relaciona adecuadamente las variables del problema           |                                               |      En archivo informacion.md seccion "pseudocodigos"                                   |
-| No es solo cálculo directo                                                |                                               |  En archivo informacion.md seccion "pseudocodigos"                                       |
-| Al menos un bucle (variable de control, condición de parada)              |                                               |                                         |
-| Al menos una sentencia condicional significativa                          |                                               |                                         |
-| Menú repetitivo hasta “Salir”                                             |                                               |                                         |
+| Ecuación que relaciona adecuadamente las variables del problema           |                                               |      En archivo informacion.md seccion "Ecuaciones"                                   |
+| No es solo cálculo directo                                                |                                               |  En archivo informacion.md seccion "Ecuaciones"                                      |
+| Al menos un bucle (variable de control, condición de parada)              |                                               |      En Archivo "menu.py"                                   |
+| Al menos una sentencia condicional significativa                          |                                               |                                    En archivo "menu.py"   | 
+| Menú repetitivo hasta “Salir”                                             |                                               |                                   En archivo "menu.py"      |
 | Sin listas, diccionarios, tuplas ni sets                                  |                                               |                                         |
 | Declaración de uso de IA (si aplica)                                      |                                               |        
 
