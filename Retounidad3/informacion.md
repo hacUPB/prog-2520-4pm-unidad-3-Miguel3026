@@ -254,6 +254,128 @@ Donde:
  
 
 # Pseudocodigos
+## Ejercicio 1
+```
+INICIO
+    DEFINIR aviones COMO DICCIONARIO
+    MOSTRAR "EJERCICIO 1: ESTABILIDAD EN TURBULENCIA"
+    MOSTRAR lista de aviones
+    LEER opcion
+
+    SI opcion NO ESTÁ en aviones ENTONCES
+        MOSTRAR "Opción inválida"
+        FIN
+    FIN SI
+
+    avion ← aviones[opcion]
+    peso ← avion.peso
+    area ← avion.area
+    v ← avion.v
+    cl_base ← avion.cl_base
+    aoa ← avion.aoa_inicial
+    estado_final ← "Exitoso"
+
+    PARA segundo ← 1 HASTA 8 HACER
+        MOSTRAR "Segundo", segundo
+        MOSTRAR "Ángulo de ataque actual:", aoa
+        LEER eleccion_aoa
+
+        SI eleccion_aoa = "a" ENTONCES
+            aoa ← aoa + 1
+        SINO SI eleccion_aoa = "d" ENTONCES
+            aoa ← aoa - 1
+        FIN SI
+
+        cl_actual ← cl_base + 0.1 * (aoa - avion.aoa_inicial)
+        sustentacion ← 0.5 * RHO * v^2 * cl_actual * area
+
+        SI sustentacion ≥ peso ENTONCES
+            MOSTRAR "Estado: Estable"
+        SINO SI sustentacion < 0.5 * peso ENTONCES
+            MOSTRAR "Estado: Pérdida"
+            estado_final ← "Perdida"
+            SALIR DEL CICLO
+        SINO SI sustentacion < 0.8 * peso ENTONCES
+            MOSTRAR "Estado: Crítico"
+        FIN SI
+
+        MOSTRAR "Velocidad actual:", v
+        LEER decision_v
+        SI decision_v = "a" ENTONCES
+            v ← v + 10
+        SINO SI decision_v = "d" ENTONCES
+            v ← v - 10
+        FIN SI
+    FIN PARA
+
+    SI estado_final = "Exitoso" ENTONCES
+        MOSTRAR "El avión logró atravesar la turbulencia con éxito."
+    SINO
+        MOSTRAR "El avión no logró superar la turbulencia."
+    FIN SI
+FIN
+```
+
+## Ejercicio 2
+
+```
+INICIO
+    DEFINIR aviones COMO DICCIONARIO
+    MOSTRAR "EJERCICIO 2: PLANEO DE EMERGENCIA SIN MOTORES"
+    MOSTRAR lista de aviones
+    LEER opcion
+
+    SI opcion NO ESTÁ en aviones ENTONCES
+        MOSTRAR "Opción inválida"
+        FIN
+    FIN SI
+
+    avion ← aviones[opcion]
+    h_actual ← avion.h_inicial
+    L_D ← avion.L_D
+    delta_h ← avion.delta_h
+    distancia ← 0
+    segundo ← 0
+    estado_final ← "Exitoso"
+
+    MIENTRAS h_actual > 0 HACER
+        segundo ← segundo + 1
+        MOSTRAR "Segundo", segundo
+        MOSTRAR "Altura actual:", h_actual, "Distancia recorrida:", distancia
+        MOSTRAR "Relación L/D actual:", L_D
+
+        LEER decision
+        SI decision = "a" ENTONCES
+            L_D ← L_D - 2
+        SINO SI decision = "d" ENTONCES
+            L_D ← L_D + 2
+        FIN SI
+
+        SI L_D < 5 ENTONCES
+            estado_final ← "Fracaso"
+            SALIR DEL CICLO
+        FIN SI
+
+        delta_x ← L_D * delta_h
+        h_actual ← h_actual - delta_h
+        SI h_actual < 0 ENTONCES
+            h_actual ← 0
+        FIN SI
+        distancia ← distancia + delta_x
+    FIN MIENTRAS
+
+    MOSTRAR "Tiempo total:", segundo
+    MOSTRAR "Distancia total recorrida:", distancia
+
+    SI estado_final = "Exitoso" ENTONCES
+        MOSTRAR "El avión logró planear hasta el suelo con éxito."
+    SINO
+        MOSTRAR "El avión no logró mantener un planeo eficiente."
+    FIN SI
+FIN
+
+```
+
 ## Ejercicio 3
 
 ```
