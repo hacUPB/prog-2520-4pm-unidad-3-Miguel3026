@@ -256,200 +256,256 @@ Donde:
 # Pseudocodigos
 ## Ejercicio 1
 ```
-INICIO
-    DEFINIR aviones COMO DICCIONARIO
-    MOSTRAR "EJERCICIO 1: ESTABILIDAD EN TURBULENCIA"
-    MOSTRAR lista de aviones
-    LEER opcion
+Inicio
 
-    SI opcion NO ESTÁ en aviones ENTONCES
-        MOSTRAR "Opción inválida"
-        FIN
-    FIN SI
+ρ = 1.225    // densidad del aire (kg/m³)
 
-    avion ← aviones[opcion]
-    peso ← avion.peso
-    area ← avion.area
-    v ← avion.v
-    cl_base ← avion.cl_base
-    aoa ← avion.aoa_inicial
-    estado_final ← "Exitoso"
+Definir aviones:
+    1 → Cessna 172 Skyhawk: peso=10000, área=16.2, v=65, Cl_base=0.4, AoA_inicial=5
+    2 → Airbus A320: peso=600000, área=122.6, v=130, Cl_base=0.5, AoA_inicial=5
+    3 → Boeing 747-8: peso=3500000, área=554, v=250, Cl_base=0.6, AoA_inicial=5
 
-    PARA segundo ← 1 HASTA 8 HACER
-        MOSTRAR "Segundo", segundo
-        MOSTRAR "Ángulo de ataque actual:", aoa
-        LEER eleccion_aoa
+Mostrar "Seleccione un avión:"
+Leer opcion
 
-        SI eleccion_aoa = "a" ENTONCES
-            aoa ← aoa + 1
-        SINO SI eleccion_aoa = "d" ENTONCES
-            aoa ← aoa - 1
-        FIN SI
+Si opcion no está en {1,2,3} Entonces
+    Mostrar "Opción inválida. Debe seleccionar 1, 2 o 3."
+    Fin
+Fin Si
 
-        cl_actual ← cl_base + 0.1 * (aoa - avion.aoa_inicial)
-        sustentacion ← 0.5 * RHO * v^2 * cl_actual * area
+peso = valor_peso_del_avion
+área = valor_area_del_avion
+v = valor_velocidad_inicial
+Cl_base = valor_Cl_base
+AoA_inicial = valor_AoA_inicial
 
-        SI sustentacion ≥ peso ENTONCES
-            MOSTRAR "Estado: Estable"
-        SINO SI sustentacion < 0.5 * peso ENTONCES
-            MOSTRAR "Estado: Pérdida"
-            estado_final ← "Perdida"
-            SALIR DEL CICLO
-        SINO SI sustentacion < 0.8 * peso ENTONCES
-            MOSTRAR "Estado: Crítico"
-        FIN SI
+AoA = AoA_inicial
+estado_final = "Exitoso"
 
-        MOSTRAR "Velocidad actual:", v
-        LEER decision_v
-        SI decision_v = "a" ENTONCES
-            v ← v + 10
-        SINO SI decision_v = "d" ENTONCES
-            v ← v - 10
-        FIN SI
-    FIN PARA
+Para segundo desde 1 hasta 8 Hacer
+    Mostrar "Segundo", segundo
+    Mostrar "Ángulo de ataque actual =", AoA
 
-    SI estado_final = "Exitoso" ENTONCES
-        MOSTRAR "El avión logró atravesar la turbulencia con éxito."
-    SINO
-        MOSTRAR "El avión no logró superar la turbulencia."
-    FIN SI
-FIN
+    Mostrar "¿Ángulo de ataque: (a)umentar, (d)isminuir o (m)antener?"
+    Leer decision_AoA
+
+    Si decision_AoA = "a" Entonces
+        AoA = AoA + 1
+        Mostrar "Ángulo de ataque aumentó a", AoA
+    Sino Si decision_AoA = "d" Entonces
+        AoA = AoA - 1
+        Mostrar "Ángulo de ataque disminuyó a", AoA
+    Sino Si decision_AoA = "m" Entonces
+        Mostrar "Ángulo de ataque se mantiene en", AoA
+    Sino
+        Mostrar "Opción inválida → se mantiene ángulo"
+    Fin Si
+
+    Cl_actual = Cl_base + 0.1 × (AoA - AoA_inicial)
+    sustentación = 0.5 × ρ × v² × Cl_actual × área
+    Mostrar "Velocidad =", v, "| Cl =", Cl_actual, "| Sustentación =", sustentación
+
+    Si sustentación ≥ peso Entonces
+        Mostrar "Estado: Estable"
+    Sino Si sustentación < 0.5 × peso Entonces
+        Mostrar "Estado: Pérdida - Fin de simulación"
+        estado_final = "Pérdida"
+        Salir del bucle
+    Sino Si sustentación < 0.8 × peso Entonces
+        Mostrar "Estado: Crítico"
+    Fin Si
+
+    Mostrar "Velocidad actual =", v
+    Mostrar "¿Velocidad: (a)umentar, (d)isminuir, (m)antener?"
+    Leer decision_v
+
+    Si decision_v = "a" Entonces
+        v = v + 10
+        Mostrar "Velocidad aumentó a", v
+    Sino Si decision_v = "d" Entonces
+        v = v - 10
+        Mostrar "Velocidad disminuyó a", v
+    Sino Si decision_v = "m" Entonces
+        Mostrar "Velocidad se mantiene en", v
+    Sino
+        Mostrar "Opción inválida → velocidad se mantiene"
+    Fin Si
+
+Fin Para
+
+Si estado_final = "Exitoso" Entonces
+    Mostrar "El avión logró atravesar la turbulencia con éxito."
+Sino
+    Mostrar "El avión no logró superar la turbulencia."
+Fin Si
+
+Fin
 ```
 
 ## Ejercicio 2
 
 ```
-INICIO
-    DEFINIR aviones COMO DICCIONARIO
-    MOSTRAR "EJERCICIO 2: PLANEO DE EMERGENCIA SIN MOTORES"
-    MOSTRAR lista de aviones
-    LEER opcion
+Inicio
 
-    SI opcion NO ESTÁ en aviones ENTONCES
-        MOSTRAR "Opción inválida"
-        FIN
-    FIN SI
+Definir aviones:
+    1 → Piper PA-28 Cherokee: h_inicial=600, L_D=10, delta_h=100
+    2 → Embraer E190: h_inicial=1200, L_D=14, delta_h=150
+    3 → Concorde: h_inicial=2000, L_D=7, delta_h=250
 
-    avion ← aviones[opcion]
-    h_actual ← avion.h_inicial
-    L_D ← avion.L_D
-    delta_h ← avion.delta_h
-    distancia ← 0
-    segundo ← 0
-    estado_final ← "Exitoso"
+Mostrar "Seleccione un avión:"
+Mostrar "1. Piper PA-28 Cherokee"
+Mostrar "2. Embraer E190"
+Mostrar "3. Concorde"
+Leer opcion
 
-    MIENTRAS h_actual > 0 HACER
-        segundo ← segundo + 1
-        MOSTRAR "Segundo", segundo
-        MOSTRAR "Altura actual:", h_actual, "Distancia recorrida:", distancia
-        MOSTRAR "Relación L/D actual:", L_D
+Si opcion no está en {1,2,3} Entonces
+    Mostrar "Opción inválida."
+    Fin
+Fin Si
 
-        LEER decision
-        SI decision = "a" ENTONCES
-            L_D ← L_D - 2
-        SINO SI decision = "d" ENTONCES
-            L_D ← L_D + 2
-        FIN SI
+h_actual = h_inicial del avión seleccionado
+L_D = L_D del avión seleccionado
+delta_h = delta_h del avión seleccionado
+distancia = 0
+segundo = 0
+estado_final = "Exitoso"
 
-        SI L_D < 5 ENTONCES
-            estado_final ← "Fracaso"
-            SALIR DEL CICLO
-        FIN SI
+Mostrar "Has seleccionado:", nombre del avión
+Mostrar "Altura inicial =", h_actual, "Relación L/D base =", L_D, "Pérdida por segundo =", delta_h
 
-        delta_x ← L_D * delta_h
-        h_actual ← h_actual - delta_h
-        SI h_actual < 0 ENTONCES
-            h_actual ← 0
-        FIN SI
-        distancia ← distancia + delta_x
-    FIN MIENTRAS
+Mientras h_actual > 0 Hacer
+    segundo = segundo + 1
+    Mostrar "Segundo", segundo
+    Mostrar "Altura actual =", h_actual, "Distancia recorrida =", distancia
+    Mostrar "Relación L/D actual =", L_D
 
-    MOSTRAR "Tiempo total:", segundo
-    MOSTRAR "Distancia total recorrida:", distancia
+    Mostrar "¿Ángulo de picado: (a)umentar, (d)isminuir o (m)antener?"
+    Leer decision
 
-    SI estado_final = "Exitoso" ENTONCES
-        MOSTRAR "El avión logró planear hasta el suelo con éxito."
-    SINO
-        MOSTRAR "El avión no logró mantener un planeo eficiente."
-    FIN SI
-FIN
+    Si decision = "a" Entonces
+        L_D = L_D - 2
+        Mostrar "El ángulo aumentó → L/D disminuye a", L_D
+    Sino Si decision = "d" Entonces
+        L_D = L_D + 2
+        Mostrar "El ángulo disminuyó → L/D aumenta a", L_D
+    Sino Si decision = "m" Entonces
+        Mostrar "El ángulo se mantiene → L/D =", L_D
+    Sino
+        Mostrar "Opción inválida → se mantiene el valor."
+    Fin Si
+
+    Si L_D < 5 Entonces
+        Mostrar "Estado: Crítico, el avión perdió eficiencia de planeo."
+        estado_final = "Fracaso"
+        Salir del bucle
+    Fin Si
+
+    delta_x = L_D × delta_h
+    h_actual = h_actual - delta_h
+    Si h_actual < 0 Entonces
+        h_actual = 0
+    Fin Si
+    distancia = distancia + delta_x
+
+Fin Mientras
+
+Mostrar "---- FIN DE SIMULACIÓN ----"
+Mostrar "Tiempo total =", segundo
+Mostrar "Distancia total recorrida =", distancia
+
+Si estado_final = "Exitoso" Entonces
+    Mostrar "El avión logró planear hasta el suelo con éxito."
+Sino
+    Mostrar "El avión no logró mantener un planeo eficiente y aterrizó de forma crítica."
+Fin Si
+
+Fin
 
 ```
 
 ## Ejercicio 3
 
 ```
-INICIO
+Inicio
 
-    Definir consumo_ascenso = 75      litros/minuto
-    Definir consumo_crucero = 50      litros/minuto
-    Definir consumo_descenso = 37.5   litros/minuto
-    Definir intervalo = 5             minutos
-    Definir min_seguridad = 1500      reserva segura
+consumo_ascenso = 75
+consumo_crucero = 50
+consumo_descenso = 37.5
+intervalo = 5
+min_seguridad = 1500
 
-    Leer combustible_inicial
-    Leer t_ascenso
-    Leer t_crucero
-    Leer t_descenso
+Mostrar "=== EJERCICIO 3: CONSUMO DE COMBUSTIBLE ==="
+Leer combustible_ini
+Leer t_ascenso
+Leer t_crucero
+Leer t_descenso
 
-    combustible_actual ← combustible_inicial
-    tiempo_total ← 0
+combustible_act = combustible_ini
+tiempo_total = 0
+estado_final = "Exitoso"
 
-    FASE ASCENSO
-    Para minuto desde 0 hasta t_ascenso con paso intervalo
-        combustible_actual ← combustible_actual - (consumo_ascenso * intervalo)
-        tiempo_total ← tiempo_total + intervalo
+Definir procedimiento simular_fase(nombre_fase, tiempo_fase, consumo_fase)
+    Para minuto desde 0 hasta tiempo_fase con paso intervalo Hacer
+        delta_combustible = consumo_fase * intervalo
+        combustible_act = combustible_act - delta_combustible
+        tiempo_total = tiempo_total + intervalo
 
-        Si combustible_actual ≤ 0 entonces
-            Mostrar "Sin combustible durante ascenso. Vuelo fallido."
-            Terminar
-        Si no, si combustible_actual ≤ min_seguridad entonces
-            Mostrar "Emergencia: combustible bajo en ascenso."
-        Si no
-            Mostrar "Normal: combustible suficiente en ascenso."
+        Si combustible_act <= 0 Entonces
+            Mostrar "Minuto", tiempo_total, ": Sin combustible durante", nombre_fase, ". Vuelo fallido."
+            estado_final = "Vuelo fallido"
+            salida_combustible = combustible_act
+            salida_tiempo = tiempo_total
+            salida_estado = estado_final
+            Salir del procedimiento
+        Sino Si combustible_act <= min_seguridad Entonces
+            Mostrar "Minuto", tiempo_total, ": Combustible", combustible_act, "litros → Emergencia en", nombre_fase
+        Sino
+            Mostrar "Minuto", tiempo_total, ": Combustible", combustible_act, "litros → Normal en", nombre_fase
         Fin Si
     Fin Para
 
-    FASE CRUCERO
-    Para minuto desde 0 hasta t_crucero con paso intervalo
-        combustible_actual ← combustible_actual - (consumo_crucero * intervalo)
-        tiempo_total ← tiempo_total + intervalo
+    salida_combustible = combustible_act
+    salida_tiempo = tiempo_total
+    salida_estado = "Continuar"
+Fin Procedimiento
 
-        Si combustible_actual ≤ 0 entonces
-            Mostrar "Sin combustible durante crucero. Vuelo fallido."
-            Terminar
-        Si no, si combustible_actual ≤ min_seguridad entonces
-            Mostrar "Emergencia: combustible bajo en crucero."
-        Si no
-            Mostrar "Normal: combustible suficiente en crucero."
-        Fin Si
-    Fin Para
+simular_fase("ascenso", t_ascenso, consumo_ascenso)
+combustible_act = salida_combustible
+tiempo_total = salida_tiempo
+estado = salida_estado
+Si estado = "Vuelo fallido" Entonces
+    Fin
+Fin Si
 
-    FASE DESCENSO
-    Para minuto desde 0 hasta t_descenso con paso intervalo
-        combustible_actual ← combustible_actual - (consumo_descenso * intervalo)
-        tiempo_total ← tiempo_total + intervalo
+simular_fase("crucero", t_crucero, consumo_crucero)
+combustible_act = salida_combustible
+tiempo_total = salida_tiempo
+estado = salida_estado
+Si estado = "Vuelo fallido" Entonces
+    Fin
+Fin Si
 
-        Si combustible_actual ≤ 0 entonces
-            Mostrar "Sin combustible durante descenso. Vuelo fallido."
-            Terminar
-        Si no, si combustible_actual ≤ min_seguridad entonces
-            Mostrar "Emergencia: combustible bajo en descenso."
-        Si no
-            Mostrar "Normal: combustible suficiente en descenso."
-        Fin Si
-    Fin Para
+simular_fase("descenso", t_descenso, consumo_descenso)
+combustible_act = salida_combustible
+tiempo_total = salida_tiempo
+estado = salida_estado
+Si estado = "Vuelo fallido" Entonces
+    Fin
+Fin Si
 
-    RESULTADO FINAL
-    Si combustible_actual ≥ min_seguridad entonces
-        Mostrar "Vuelo exitoso. Aterrizaje con reserva suficiente."
-    Si no, si combustible_actual > 0 entonces
-        Mostrar "Vuelo completado en emergencia. Aterrizaje con menos de la reserva mínima."
-    Si no
-        Mostrar "Vuelo fallido. Sin combustible antes de aterrizar."
-    Fin Si
+Mostrar "---- FIN DEL VUELO ----"
+Mostrar "Tiempo total:", tiempo_total, "minutos"
+Mostrar "Combustible final:", combustible_act, "litros"
 
-FIN
+Si combustible_act >= min_seguridad Entonces
+    Mostrar "Resultado: Vuelo exitoso. Aterrizaje con reserva suficiente."
+Sino Si combustible_act > 0 Entonces
+    Mostrar "Resultado: Vuelo completado en emergencia. Aterrizaje con menos de la reserva mínima."
+Sino
+    Mostrar "Resultado: Vuelo fallido. Sin combustible antes de aterrizar."
+Fin Si
+
+Fin
 ```
 
 
