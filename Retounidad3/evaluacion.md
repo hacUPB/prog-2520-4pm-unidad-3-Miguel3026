@@ -8,8 +8,8 @@
 | Contexto aeronáutico claro y relevante | 2 |Archivo informacion.md seccion "simulaciones aeronauticas"
 | Clara definición y clasificación de las variables de entrada, salida, de control e intermedias | 2 | Archivo informacion.md seccion "tablas de variables" |
 | Clara definición de las constantes que se utilizan en el problema | 2 | Archivo informacion.md seccion "pseudocodigos y constantes utilizadas" |
-| Ecuación que relaciona adecuadamente las variables del problema | 2 | Archivo informacion.md seccion "constantes utilizadas" |
-| No es solo cálculo directo | 2 | Archivo menu.py  |
+| Ecuación que relaciona adecuadamente las variables del problema | 2 | Archivo informacion.md seccion "Ecuaciones" |
+| No es solo cálculo directo | 2 | Archivo informacion.md seccion "Ecuaciones" |
 | Al menos un bucle (variable de control, condición de parada) | 2 | Archivo menu.py  |
 | Al menos una sentencia condicional significativa | 2 | Archivo informacion.md seccion "pseudocodigos" |
 | Menú repetitivo hasta “Salir” | 2 |Archivo menu.py |
