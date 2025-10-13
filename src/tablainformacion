@@ -1,0 +1,73 @@
+# Tabla de palabras clave y funciones integradas en Python
+# Guardar como: tabla_python.py
+
+def mostrar_tabla():
+    print("\n=== 🔑 Palabras clave de Python ===\n")
+    keywords = {
+        "False": "Valor booleano falso",
+        "True": "Valor booleano verdadero",
+        "None": "Ausencia de valor",
+        "and": "Operador lógico Y",
+        "or": "Operador lógico O",
+        "not": "Operador lógico NO",
+        "if": "Condicional",
+        "elif": "Sino, si...",
+        "else": "Sino...",
+        "for": "Bucle (recorre secuencias)",
+        "while": "Bucle mientras condición sea verdadera",
+        "break": "Rompe un bucle",
+        "continue": "Salta a la siguiente iteración",
+        "in": "Comprueba si un elemento está en una secuencia",
+        "is": "Compara identidad de objetos",
+        "def": "Define una función",
+        "return": "Devuelve un valor desde una función",
+        "class": "Define una clase",
+        "try": "Inicia bloque con manejo de errores",
+        "except": "Captura el error",
+        "finally": "Bloque que siempre se ejecuta",
+        "raise": "Lanza una excepción",
+        "import": "Importa módulos",
+        "from": "Importa partes específicas de un módulo",
+        "as": "Renombra módulo al importarlo",
+        "with": "Manejo de contexto (ej. archivos)",
+        "lambda": "Función anónima en una sola línea",
+        "global": "Declara variables globales",
+        "nonlocal": "Declara variables en ámbito superior",
+        "pass": "No hace nada (placeholder)",
+        "del": "Elimina variable u objeto",
+        "yield": "Devuelve valor en generadores",
+        "assert": "Verifica una condición (debug/test)"
+    }
+
+    for palabra, descripcion in keywords.items():
+        print(f"{palabra:<10} -> {descripcion}")
+
+    print("\n=== ⚡ Funciones integradas más usadas ===\n")
+    funciones = {
+        "print()": "Muestra información en pantalla",
+        "input()": "Recibe datos del usuario",
+        "int()": "Convierte a número entero",
+        "float()": "Convierte a número decimal",
+        "str()": "Convierte a texto",
+        "len()": "Devuelve longitud de listas, cadenas, etc.",
+        "type()": "Devuelve el tipo de dato",
+        "range()": "Genera secuencia de números",
+        "list()": "Crea una lista",
+        "dict()": "Crea un diccionario",
+        "set()": "Crea un conjunto (sin duplicados)",
+        "tuple()": "Crea una tupla (inmutable)",
+        "sum()": "Suma elementos de una colección",
+        "min()": "Devuelve el valor mínimo",
+        "max()": "Devuelve el valor máximo",
+        "abs()": "Valor absoluto",
+        "round()": "Redondea un número",
+        "sorted()": "Ordena una lista",
+        "help()": "Muestra ayuda sobre funciones/objetos"
+    }
+
+    for funcion, descripcion in funciones.items():
+        print(f"{funcion:<10} -> {descripcion}")
+
+
+if __name__ == "__main__":
+    mostrar_tabla()
